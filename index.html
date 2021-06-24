@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sort Without Articles</title>
+<style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: url("https://source.unsplash.com/nDqA4d5NL0k/2000x2000");
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      min-height: 100vh;
+    }
+    
+    #myDiv3 {
+        margin:0 auto;
+    }
+
+    #bands {
+      list-style: inside square;
+      font-size: 20px;
+      background: white;
+      width: 500px;
+      margin: auto;
+      padding: 0;
+      box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.05);
+    }
+    
+    #bands li {
+      border-bottom: 1px solid #efefef;
+      padding: 20px;
+    }
+    
+    #bands li:last-child {
+      border-bottom: 0;
+    }
+
+    a {
+      color: #ffc600;
+      text-decoration: none;
+    }
+
+</style>
+</head>
+<body>
+
+  <!--ul id="bands">
+  <li>Toto titi</li>
+  <li>The Devil Wears Prada</li>
+  <li>Pierce the Veil</li>
+  </ul-->
+    
+    
+    <p id="myDiv3"></p>
+<script>
+    // LE TABLEAU DE DEPART 
+
+var tableau = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+
+//document.getElementById("myDiv").innerHTML = tableau;
+
+/* JE CREE UN DEUXIEME TABLEAU A DEUX DIMENSIONS (TABLEAU MULTI-DIMENSIONNEL)
+OÙ JE METS LES PHRASES COUPÉES (SI BESOIN) À GAUCHE, LES PHRASES COMPLÈTES À DROITE */
+
+var tableau2 = []; 
+
+for (i=0; i < tableau.length; i++) {
+
+     coupe = tableau[i].replace("the ", ""); 
+     coupe = coupe.replace("The ", ""); 
+     coupe = coupe.replace("an ", "");
+     coupe = coupe.replace("An ", "");
+     coupe = coupe.replace("a ", ""); 
+     coupe = coupe.replace("A ", "");     
+      
+    tableau2[i] =  [[coupe, tableau[i]]]
+}
+//document.getElementById("myDiv2").innerHTML = tableau2; 
+
+// JE PASSE LA COLONNE DE GAUCHE EN MINUSCULES POUR UN TRI ALPHABETIQUE CORRECT
+
+		for (i = 0; i < tableau2.length; i++) {
+            
+            tableau2[i][0][0] = tableau2[i][0][0].toLowerCase() ; 
+}
+
+// PUIS JE TRIE LE DEUXIEME TABLEAU PAR ORDRE ALPHABÉTIQUE
+
+  tableau2.sort();
+ 
+// IL NE ME RESTE PLUS QU'À AFFICHER LA COLONNE DE DROITE
+
+ var text = '<ul id="bands">';
+
+for (i = 0; i < tableau2.length; i++) {
+
+  text += '<li>' + tableau2[i][0][1] + '</li>';
+ }
+    
+    text += '</ul>'
+document.getElementById("myDiv3").innerHTML = text ;
+</script>
+
+ 
+
+</body>
+</html>
